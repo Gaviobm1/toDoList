@@ -1,12 +1,9 @@
 import { makeToDoItem } from "./itemCreator";
 import { makeProject } from "./makeProjectFolder";
 import { returnDate } from "./getDate";
+import { makeLandingPage } from "./landingPage";
 
-const button = document.createElement('button')
-button.innerHTML = 'Button';
-
-document.body.appendChild(button);
-button.addEventListener('click', function() {
+makeLandingPage().addEventListener('click', function() {
     const daily = makeToDoItem('Get groceries', 'Go to the market to pick up some stuff', returnDate(7, 7, 2024), 2, 'Remeber to get some ice too!');
     const dinner = makeToDoItem('Ham', 'Get the special ham for dinner', returnDate(6, 7, 2024), 3, 'Honey for the glaze')
     const shopping = makeProject('Shopping');
@@ -20,6 +17,4 @@ button.addEventListener('click', function() {
     console.log(shopping);
     console.log(exercise);
     console.log(shopping.dinner);
-    
-
 })
