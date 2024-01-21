@@ -1,36 +1,77 @@
 import './style.css';
 
 
-function makeLandingPage() {
-    const wrapper = document.createElement('div');
-    const button = document.createElement('button');
-    button.innerHTML = 'Test';
-    document.body.appendChild(wrapper);
-    wrapper.appendChild(button);
-    return button;
+function makeDiv(Id = 'div') {
+    const div = document.createElement('div');
+    div.setAttribute('Id', Id);
+    document.body.appendChild(div);
+    return div;
 };
 
-const makeButton = (content) => {
+const makeButton = (buttonContent, Id = 'button') => {
     const button = document.createElement('button')
-    button.innerHTML = content
-    document.body.appendChild(button)
+    button.innerHTML = buttonContent
+    button.setAttribute('Id', Id)
+    return button
 }
 
-const makeInput = (id, type = 'text') => {
-    const field = document.createElement('input');
-    field.setAttribute('type', type);
-    field.setAttribute('id', id);
-    field.setAttribute('name', id);
-    return field;
+const getEventListenerNode = (nodeId) => {
+   const node = document.getElementById(nodeId);
+   return node;
 }
 
-const makeLabel = (link, content) => {
-    const label = document.createElement('label');
-    label.setAttribute('for', link);
+const makeLabel =  (id, content) => {
+    const label = document.createElement('label')
+    label.setAttribute('for', id);
     label.innerHTML = content;
+    return label
+}
+
+const makeField = (id, type = 'text') => {
+    const input = document.createElement('input');
+    input.setAttribute('type', type);
+    input.setAttribute('id', id);
+    input.setAttribute('name', id);
+    return input;
+}
+
+const makeSelect = (id, ...options) => {
+    const select = document.createElement('select');
+    select.setAttribute('id', id);
+    select.setAttribute('name', id);
+    for(let i = 0; i < options.length; i++) {
+        const selection = document.createElement('option');
+        selection.setAttribute('value', options[i]);
+        selection.innerHTML = options[i];
+        select.appendChild(selection);
+    }
+    return select
+}
+
+const attachLabelToField = (id, content, type='text') => {
+    const label = makeLabel(id, content);
+    const input = makeField(id, type);
+    label.appendChild(input);
     return label;
 }
-const makeField = (id, content, type = 'text') => {
-    document.body.appendChild(makeLabel(id, content));
-    document.body.appendChild(makeNewInput(id, type));
+
+const attachLabelToSelect = (id, content, ...options) => {
+    const label = makeLabel(id, content);
+    const select = makeSelect(id, ...options);
+    label.appendChild(select);
+    return label;
 }
+
+const makeToDoInput = () => {
+    const wrapper = makeDiv('wrapper');
+    wrapper.appendChild(attachLabelToField('title', 'Title:'));
+    wrapper.appendChild(attachLabelToField('description', 'Description:'));
+    wrapper.appendChild(attachLabelToField('dueDate', 'Due Date:', 'date'));
+    wrapper.appendChild(attachLabelToSelect('priority', 'Priority', 'Select Priority', 'Low', 'Moderate', 'High', 'Very High', 'Urgent'));
+    wrapper.appendChild(attachLabelToField('notes', 'Notes'));
+    wrapper.appendChild(makeButton('Add to \"My To-Do List\"'));
+    wrapper.appendChild(makeButton('New project', 'new-project-button'));
+    document.body.appendChild(wrapper);
+}
+
+export {makeButton, makeDiv, makeToDoInput, getEventListenerNode, attachLabelToField}
