@@ -1,16 +1,18 @@
-import { makeToDoItem } from "./itemCreator";
-import { makeProject } from "./makeProjectFolder";
-import { returnDate } from "./getDate";
-import { makeToDoInput, getEventListenerNode } from "./landingPage";
-import { addNewProject, generateSideBar, generateProjectNameForm } from "./projectSideBar";
+import './style.css';
+import { createMyProjectsSidebar} from './createMyProjectSidebar';
+import { generateListListener } from './eventListeners';
+import { createDefaultProject } from './localStorage';
+import { seeAllItems } from './toDoListItemDivs';
 
-makeToDoInput()
-generateSideBar()
+export function createHomePage() {
+    createMyProjectsSidebar();
+    createDefaultProject('My To-Do List')
+    generateListListener();
+    seeAllItems();
+}
 
-document.getElementById('project-button').addEventListener('click', function() {
-    generateProjectNameForm('project-name');
-})
+createHomePage()
 
-document.getElementById('new-project-button').addEventListener('click', function() {
-    generateProjectNameForm('project-name');
-})
+
+
+

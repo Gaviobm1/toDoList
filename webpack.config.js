@@ -1,12 +1,12 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
     entry: './src/index.js',
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        filename: './src/bundle.js',
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
@@ -15,15 +15,16 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
+                test: /\.(woff|woff2|otf|ttf|eot)$/i,
                 type: 'asset/resource',
             },
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'To Do List',
-            inject: 'body' 
+        new HTMLWebpackPlugin({
+            title: 'My List',
+            inject: 'body',
         }),
     ],
+    watch: true,
 }
