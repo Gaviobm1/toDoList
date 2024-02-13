@@ -207,7 +207,8 @@ input, select, textarea {
 
 .pop-up-main {
     z-index: 2;
-    width: 40%;
+    min-width: 50%;
+    max-width: 80%;
     height: auto;
     display: flex;
     background-color: var(--bg-color);
