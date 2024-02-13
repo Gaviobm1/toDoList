@@ -14,6 +14,9 @@ function createFormInputs(...args){
 function createSelect (classIdentifyer = 'select-field',...options) {
     const select = document.createElement('select');
     for(let i = 0; i < options.length; i++) {
+        if (options[i] === 'checkList') {
+            continue;
+        }
         const selection = document.createElement('option');
         selection.classList.add(classIdentifyer);
         selection.setAttribute('value', options[i]);

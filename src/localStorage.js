@@ -9,6 +9,16 @@ function removeProject(project) {
     localStorage.removeItem(project);
 }
 
+function removeCheckList(container) {
+    const checkList = JSON.parse(localStorage.getItem('checkList'));
+    for(let obj in checkList) {
+        if (obj === container) {
+            delete checkList[obj]
+        }
+    }
+    localStorage.setItem('checkList', JSON.stringify(checkList));
+}
+
 function createDefaultProject(name) {
     if (localStorage.getItem(name)) {
         return
@@ -128,6 +138,6 @@ function reinsertItemToProject(project, oldItem) {
 
 
 
-export {storeProject, addItemToProject, makeNewItem, createDefaultProject, removeProject, attachItemsToActivityList, extractItemDetails, deleteItemFromProject, getProject, reinsertItemToProject, checkPriority};
+export {storeProject, addItemToProject, makeNewItem, createDefaultProject, removeProject, attachItemsToActivityList, extractItemDetails, deleteItemFromProject, getProject, reinsertItemToProject, checkPriority, removeCheckList};
 
 

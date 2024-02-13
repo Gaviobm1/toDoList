@@ -1,7 +1,7 @@
 import { removePopUp, attachElementToContainer, doublePopRemove, simpleRemove } from "./popUpUtilities";
 import { newProjectForm } from "./newProjectForm";
 import { storeProject, removeProject, deleteItemFromProject } from "./localStorage";
-import { makeNewItem, addItemToProject, reinsertItemToProject } from "./localStorage";
+import { makeNewItem, addItemToProject, reinsertItemToProject, removeCheckList } from "./localStorage";
 import { clearHomePage, cancel } from "./DOMUtilities";
 import { createDeleteProjectForm, deleteItemForm, deleteProjectWarningForm, } from "./deleteProjectForm";
 import { createHomePage } from ".";
@@ -9,6 +9,7 @@ import { createMainForm } from "./createMainForm";
 import { seeAllItems, clearList, projectSpecificList } from "./toDoListItemDivs";
 import { editItem } from "./editItemForm";
 import { titleToId, idToTitle } from "./DOMUtilities";
+import { createCheckList } from "./checklist";
 
 function addProjectSidebarButton(button) {
     button.addEventListener('click', function() {
@@ -128,6 +129,7 @@ function generateListListener() {
 
 function removeItem(button, title, project, date) {
     button.addEventListener('click', function() {
+        removeCheckList(`${title}${project}`)
         const bound = cancel.bind(button);
         bound();
         deleteItemFromProject(title, project, date);
@@ -171,5 +173,11 @@ function saveEditedItem(button, project, oldItem) {
     })
 }
 
+function checklistPopUp(button, title, project) {
+    button.addEventListener('click', function() {
+        const bound = (attachElementToContainer.bind(createCheckList(title, project)))()
+    })
+}
+
   
-export {addNewProjectFormButton, addProjectSidebarButton, removeWarningPopUp, addItemToProjectListener, deleteProjectListener, removeProjectFromLocalStorage, popUpMainForm, immediateRemove, generateListListener, removeItem, removeItemPopUp, editInfoItemPopUp, saveEditedItem, removeProjectFormListener, removePopUpListener, simpleRemoveListener}
+export {addNewProjectFormButton, addProjectSidebarButton, removeWarningPopUp, addItemToProjectListener, deleteProjectListener, removeProjectFromLocalStorage, popUpMainForm, immediateRemove, generateListListener, removeItem, removeItemPopUp, editInfoItemPopUp, saveEditedItem, removeProjectFormListener, removePopUpListener, simpleRemoveListener, checklistPopUp}

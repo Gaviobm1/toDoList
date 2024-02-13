@@ -1,7 +1,7 @@
 import { createButton} from "./formUtilities";
 import { appendChildren, removeChildren } from "./DOMUtilities";
 import { extractItemDetails} from "./localStorage";
-import { editInfoItemPopUp, removeItemPopUp } from "./eventListeners";
+import { editInfoItemPopUp, removeItemPopUp, checklistPopUp } from "./eventListeners";
 
 
 function makeItemDiv(project) {
@@ -33,12 +33,14 @@ function makeItemDiv(project) {
     const doneRadioDiv = document.createElement('div');
     doneRadioDiv.classList.add('item-remove-div')
     doneRadioDiv.appendChild(doneRadio);
+    const checkListButton = createButton('Checklist');
     const priority = document.createElement('p');
     const priorityDiv = document.createElement('div');
-    priorityDiv.classList.add('item-priority')
+    priorityDiv.classList.add('item-priority');
+    priorityDiv.appendChild(checkListButton);
     priorityDiv.appendChild(priority);
-
-    return {itemDiv, detailsDiv, projectInfoDiv, editButtonDiv, doneRadioDiv, priorityDiv, priority, title, projectName, date, editButton, doneRadio};
+    
+    return {itemDiv, detailsDiv, projectInfoDiv, editButtonDiv, doneRadioDiv, priorityDiv, priority, title, projectName, date, editButton, checkListButton, doneRadio};
 }
 
 function checkForItems(project) {
@@ -91,7 +93,8 @@ function putItemsInPage(project) {
         divs.title.textContent = details.titleArr[i];
         divs.date.textContent = details.dueDateArr[i];
         divs.priority.textContent = details.priorityArr[i];
-        appendChildren(divs.itemDiv, divs.detailsDiv, divs.editButtonDiv, divs.projectInfoDiv, divs.doneRadioDiv, divs.priorityDiv );
+        checklistPopUp(divs.checkListButton, divs.title.textContent, project);
+        appendChildren(divs.itemDiv, divs.detailsDiv, divs.editButtonDiv, divs.projectInfoDiv, divs.doneRadioDiv, divs.priorityDiv);
         document.body.appendChild(divs.itemDiv);
     };
 }
