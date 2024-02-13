@@ -70,7 +70,7 @@ function addItemToProjectListener(button) {
         const mainButton = document.querySelector('.heading');
         if (mainButton.hasAttribute('Id')) {
             clearList();
-            projectSpecificList(idToTitle(mainButton.getAttribute('class')));
+            projectSpecificList(idToTitle(mainButton.getAttribute('Id')));
         } else {
             seeAllItems();
         }

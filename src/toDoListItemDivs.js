@@ -44,7 +44,8 @@ function makeItemDiv(project) {
 }
 
 function checkForItems(project) {
-    const detailsLength = JSON.parse(localStorage.getItem(project)).length;
+    const details = JSON.parse(localStorage.getItem(project));
+    const detailsLength = details.length;
     if (detailsLength === 0) {
         const noItemsDiv = document.createElement('div');
         const noItemsP = document.createElement('p');
@@ -56,20 +57,6 @@ function checkForItems(project) {
         return false;
     }
     return true;
-}
-
-function checkForMultipleProjects() {
-    if (document.querySelector('.item-div').querySelector('.item-project')) {
-        const nodes = document.querySelectorAll('.item-div');
-        const projectName = nodes[0].querySelector('.item-project').textContent;
-        for (let i = 0; i < nodes.length; i++) {
-            if (nodes[i].querySelector('.item-project').textContent === projectName) {
-                continue;
-            }
-            return true;
-        }
-        return false;
-    }
 }
 
 function checkToAddItemToOpenProjectList() {
@@ -106,20 +93,6 @@ function projectSpecificList(project) {
     }
 }
 
-function sortByDate(projectName) {
-    const project = JSON.parse(localStorage.getItem(projectName));
-    project.sort((a, b) => {
-        const date1 = new Date(a.dueDate).valueOf();
-        const date2 = new Date(b.dueDate).valueOf()
-        if (date1 < date2) {
-            return -1;
-        } else if (date1 > date2) {
-            return 1;
-        }
-        return 0;
-    })
-    return project;
-}
 
 function clearList() {
     if (document.querySelector('.item-div')) {
@@ -132,6 +105,8 @@ function clearList() {
 function seeAllItems() {
     clearList();
     const projects = Object.keys(localStorage);
+    const index = projects.indexOf('checkList');
+    projects.splice(index, 1);
     let contents = 0;
     projects.forEach(element => {
         const item = JSON.parse(localStorage.getItem(element));
@@ -152,7 +127,6 @@ function seeAllItems() {
         noItemsDiv.appendChild(noItemsP);
         document.body.appendChild(noItemsDiv);
     }
-    
 }
 
-export {putItemsInPage, seeAllItems, clearList, checkForItems, checkForMultipleProjects, checkToAddItemToOpenProjectList, projectSpecificList};
+export {putItemsInPage, seeAllItems, clearList, checkForItems, checkToAddItemToOpenProjectList, projectSpecificList};

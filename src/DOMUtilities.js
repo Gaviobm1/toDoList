@@ -66,21 +66,6 @@ function clearFields() {
     }
 }
 
-function getProjectNameFromElement(DOMelement) {
-    const className = DOMelement.className
-    const nodeList = document.getElementsByClassName(`${className}`);
-    const arr1 = [];
-    const arr2 = [];
-    for (let i = 0; i < nodeList.length; i++) {
-        arr1.push(nodeList[i].innerHTML);
-    }
-    arr1.forEach(element => {
-        const ele = element.split('<');
-        arr2.push(ele[0]);
-    })
-    return arr2[0];
-}
-
 function cancel() {
     const parent = this.parentNode;
     const sibling = parent.previousSibling
@@ -88,4 +73,4 @@ function cancel() {
     document.body.removeChild(sibling);
 }
 
-export {titleToId, idToTitle, appendChildren, removeChildren, clearFields, clearHomePage,  getProjectNameFromElement, cancel};
+export {titleToId, idToTitle, appendChildren, removeChildren, clearFields, clearHomePage, cancel};

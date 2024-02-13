@@ -6,7 +6,7 @@ import { appendChildren } from "./DOMUtilities";
 
 function createDeleteProjectForm() {
     const projectSelector = createProjectSelector();
-    projectSelector.removeChild(projectSelector.querySelector("option[value='My To-Do List']"));
+    projectSelector.removeChild(projectSelector.querySelector("option[value='My To Do List']"));
     projectSelector.setAttribute('Id', 'delete-selector');
     const button = createButton('Delete');
     removeProjectFormListener(button);
@@ -49,12 +49,4 @@ function deleteItemForm() {
     return { confirmP, confirm, cancel};
 }
 
-function getInfoFromItemDiv() {
-    const parent = this.parentNode;
-    const item = parent.querySelector('.item-title').textContent;
-    const project = parent.querySelector('.item-project').textContent;
-    const date = parent.querySelector('.item-date').textContent;
-    return {item, project, date};
-}
-
-export {createDeleteProjectForm, deleteProjectWarningForm, deleteItemForm, getInfoFromItemDiv}
+export {createDeleteProjectForm, deleteProjectWarningForm, deleteItemForm}

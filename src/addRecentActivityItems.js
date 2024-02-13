@@ -1,3 +1,7 @@
+/*
+Keeping this for possible use in future additional feature
+*/
+
 function addedItem(project, item) {
     const recentItem = document.createElement('p');
     recentItem.textContent = `Added ${item} to ${project}`;

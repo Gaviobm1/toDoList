@@ -1,4 +1,3 @@
-import { addProjectToSidebar,  } from "./createMyProjectSidebar";
 import { createNewItem } from "./projectAndItemCreators";
 
 function storeProject(project, item= []) {
@@ -15,6 +14,9 @@ function removeCheckList(container) {
         if (obj === container) {
             delete checkList[obj]
         }
+    }
+    if (checkList === null) {
+        checkList = {}
     }
     localStorage.setItem('checkList', JSON.stringify(checkList));
 }
@@ -57,24 +59,6 @@ function hasChanged(oldName, newName) {
         return false;
     } 
     return true;
-}
-
-
-function attachItemsToActivityList() {
-    const listDiv = document.querySelector('.recent-activity');
-    const children = listDiv.getElementsByClassName('recent-item');
-    if (children.length > 0) {
-        for (let i = 0; i < children.length; i++) {
-            listDiv.removeChild(children[i]);
-        }
-    }
-    const itemList = JSON.parse(localStorage.getItem('Recent Activity'));
-    for (let i = 0; i < itemList.length; i++) {
-        const p = document.createElement('p');
-        p.textContent = itemList[i]
-        p.classList.add('recent-item')
-        listDiv.appendChild(p);
-    }
 }
 
 function extractItemDetails(project) {
@@ -133,11 +117,8 @@ function reinsertItemToProject(project, oldItem) {
         itemList.splice(oldItem.index, 1, newItem);
         localStorage.setItem(project, JSON.stringify(itemList));
     }
-    
 }
 
-
-
-export {storeProject, addItemToProject, makeNewItem, createDefaultProject, removeProject, attachItemsToActivityList, extractItemDetails, deleteItemFromProject, getProject, reinsertItemToProject, checkPriority, removeCheckList};
+export {storeProject, addItemToProject, makeNewItem, createDefaultProject, removeProject, extractItemDetails, deleteItemFromProject, getProject, reinsertItemToProject, checkPriority, removeCheckList};
 
 

@@ -1,13 +1,5 @@
 import { createFormInputs, createLabels, createButton } from "./formUtilities"
 import { addNewProjectFormButton, removePopUpListener} from "./eventListeners";
-import { popUpMainForm } from "./eventListeners";
-
-function addItemButton() {
-    const button = createButton('+');
-    button.setAttribute('Id', 'main-page-add');
-    popUpMainForm(button);
-    document.body.appendChild(button);
-}
 
 function newProjectForm() {
     const title = createFormInputs('text');
@@ -20,4 +12,4 @@ function newProjectForm() {
     return {label, button, cancel};
 }
 
-export { addItemButton, newProjectForm};
+export { newProjectForm};

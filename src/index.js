@@ -6,7 +6,7 @@ import { seeAllItems } from './toDoListItemDivs';
 
 export function createHomePage() {
     createMyProjectsSidebar();
-    createDefaultProject('My To-Do List')
+    createDefaultProject('My To Do List')
     generateListListener();
     seeAllItems();
 }
