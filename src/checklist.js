@@ -50,46 +50,6 @@ function changeClass(class1, class2) {
     }
 }
 
-function generateOrderedNodeListByClass(...classes) {
-    const orderedList = [];
-    for (let i = 0; i < classes.length; i++) {
-        const itemList = document.getElementsByClassName(classes[i]);
-        for(let i = 0; i < itemList.length; i++) {
-            orderedList.push(itemList[i]);
-        }
-    }
-    return orderedList;
-}
-
-function createOrderedDOMList(div, nodeList) {
-    for (let i = 0; i < nodeList.length; i++) {
-        div.appendChild(nodeList[i]);
-    }
-}
-
-function checkForClassesAmongSiblings(order = []) {
-    const parent = this.parentNode;
-    const childList = parent.childNodes;
-    const classList = [];
-    for (let i = 0; i < childList.length; i++) {
-        if (!classList.includes(childList[i].classList[0])) {
-            classList.push(childList[i].classList[0]);
-        }
-    }
-    if (order.length > 0) {
-        for(let i = 0; i < classList.length; i++) {
-            classList[i] = order[i];
-        }
-    }
-    return classList;
-}
-
-function reorderListUser(order) {
-    const listDiv = this.parentNode;
-    const classes = checkForClassesAmongSiblings.bind(this);
-    createOrderedDOMList(listDiv, generateOrderedNodeListByClass(...(classes(order))))
-}
-
 function getItemsForStorageByClass(class1) {
     const nodeList = document.getElementsByClassName(class1);
     const newList = [];

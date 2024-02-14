@@ -290,7 +290,7 @@ input, select, textarea {
 .list-div, .done-list {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(30%, 45%));
     gap: 1rem;
     font-size: var(--body-font-size);
 }
@@ -304,7 +304,9 @@ input, select, textarea {
    font-size: var(--body-font-size);
 }
 
-@viewport {
-    width: device-width;
-    user-zoom: fixed;
+@media (max-device-width: 450px) {
+    .pop-up-main {
+        width: 100%;
+        height: 100%;
+    }
 }
