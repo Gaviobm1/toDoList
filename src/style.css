@@ -175,6 +175,8 @@ input, select, textarea {
     padding: var(--gen-div-padding);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .project-div {
@@ -288,7 +290,7 @@ input, select, textarea {
 .list-div, .done-list {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
     gap: 1rem;
     font-size: var(--body-font-size);
 }
@@ -300,4 +302,9 @@ input, select, textarea {
 
 .checklist-input {
    font-size: var(--body-font-size);
+}
+
+@viewport {
+    width: device-width;
+    user-zoom: fixed;
 }
